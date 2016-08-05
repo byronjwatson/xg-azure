@@ -2,11 +2,8 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "availabilitySet": {
-            "value": "AVS"
-        },
         "vmName": {
-            "value": "XG-Firewall"
+            "value": "XG-Firewall3"
         },
         "adminPassword": {
             "value": "insertYourPasswordHere"
@@ -14,26 +11,32 @@
         "vmSize": {
             "value": "Standard_A3"
         },
+        "netNewOrExisting": {
+            "value": "existing"
+        },
+        "netRG": {
+            "value": "SP-AVS"
+        },
         "netName": {
-            "value": "VNET"
+            "value": "NET"
         },
         "netPrefix": {
-            "value": "10.0.0.0/16"
+            "value": "DoesNotMatter"
         },
         "wanName": {
-            "value": "WAN"
+            "value": "default"
         },
         "wanPrefix": {
-            "value": "10.0.1.0/24"
+            "value": "DoesNotMatter"
         },
         "lanName": {
-            "value": "LAN"
+            "value": "secondary"
         },
         "lanPrefix": {
-            "value": "10.0.2.0/24"
+            "value": "DoesNotMatter"
         },
         "storageName": {
-            "value": "xgazure"
+            "value": "sfostest3"
         },
         "storageType": {
             "value": "Standard_LRS"
@@ -42,7 +45,19 @@
             "value": "byol"
         },
         "publicIpDNS": {
-            "value": "sfostest6"
+            "value": "sfostest3"
+        },
+        "publicIpName": {
+            "value": "PublicIP3"
+        },
+        "publicIpNewOrExisting": {
+            "value": "new"
+        },
+        "index": {
+            "value": "3"
+        },
+        "availabilitySet": {
+            "value": "AVS"
         }
     }
 }

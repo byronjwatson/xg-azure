@@ -156,6 +156,9 @@
             "metadata": {
                 "description": " Endpoint for Storage Account."
             }
+        },
+        "index": {
+            "type": "string"
         }
     },
     "variables": {
@@ -164,9 +167,9 @@
         "location": "[resourceGroup().location]",
         "group": "[resourceGroup().name]",
         "vhdContainer": "vhds",
-        "nicWan": "PortB",
-        "nicLan": "PortA",
-        "networkSecurityGroupName": "SecurityGroup",
+        "nicWan": "[concat('PortB',parameters('index'))]",
+        "nicLan": "[concat('PortA',parameters('index'))]",
+        "networkSecurityGroupName": "[concat('SecurityGroup',parameters('index'))]",
         "publicIpType": "Dynamic",
         "adminUsername": "azureuser",
         "sshKeyPath": "[concat('/home/',variables('adminUsername'),'/.ssh/authorized_keys')]",

@@ -458,11 +458,13 @@
                             }
                         },
                         {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicLan'))]",
-                            "properties": {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicLan'))]", "properties": {
                                 "primary": false
                             }
                         }
+                    ],
+                    "securityGroups": [
+                        "id": "[resourceId('Microsoft.Network/securityGroups',variables('networkSecurityGroupName'))]"
                     ]
                 },
                 "diagnosticsProfile": {

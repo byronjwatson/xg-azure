@@ -245,7 +245,7 @@
         {
             "apiVersion": "[variables('apiVersion').network]",
             "type": "Microsoft.Network/networkSecurityGroups",
-            "name": "[variables('networkSecurityGroupName')]",
+            "name": "[parameters('networkSecurityGroupName')]",
             "location": "[variables('location')]",
             "tags": {
                 "displayName": "NetworkSecurityGroup"
@@ -345,16 +345,16 @@
         {
             "apiVersion": "[variables('apiVersion').network]",
             "type": "Microsoft.Network/networkInterfaces",
-            "name": "[variables('nicWan')]",
+            "name": "[parameters('nicWan')]",
             "location": "[variables('location')]",
             "dependsOn": [
                 "[concat('Microsoft.Resources/deployments/', 'SettingUpPublicIP')]",
                 "[concat('Microsoft.Resources/deployments/', 'SettingUpVirtualNetwork')]",
-                "[concat('Microsoft.Network/networkSecurityGroups/', variables('networkSecurityGroupName'))]"
+                "[concat('Microsoft.Network/networkSecurityGroups/', parameters('networkSecurityGroupName'))]"
             ],
             "properties": {
                 "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]"
                 },
                 "ipConfigurations": [
                     {
@@ -376,7 +376,7 @@
         {
             "apiVersion": "[variables('apiVersion').network]",
             "type": "Microsoft.Network/networkInterfaces",
-            "name": "[variables('nicLan')]",
+            "name": "[parameters('nicLan')]",
             "location": "[variables('location')]",
             "dependsOn": [
                 "[concat('Microsoft.Resources/deployments/', 'SettingUpVirtualNetwork')]"
@@ -407,8 +407,8 @@
             },
             "location": "[variables('location')]",
             "dependsOn": [
-                "[concat('Microsoft.Network/networkInterfaces/', variables('nicWan'))]",
-                "[concat('Microsoft.Network/networkInterfaces/', variables('nicLan'))]",
+                "[concat('Microsoft.Network/networkInterfaces/', parameters('nicWan'))]",
+                "[concat('Microsoft.Network/networkInterfaces/', parameters('nicLan'))]",
                 "[concat('Microsoft.Resources/deployments/', 'SettingUpStorageAccount')]"
             ],
             "properties": {
@@ -452,20 +452,20 @@
                 "networkProfile": {
                     "networkInterfaces": [
                         {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicWan'))]",
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces',parameters('nicWan'))]",
                             "properties": {
                                 "primary": true
                             }
                         },
                         {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicLan'))]",
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces',parameters('nicLan'))]",
                             "properties": {
                                 "primary": false
                             }
                         }
                     ],
                     "securityGroups": {
-                        "id": "[resourceId('Microsoft.Network/securityGroups',variables('networkSecurityGroupName'))]"
+                        "id": "[resourceId('Microsoft.Network/securityGroups',parameters('networkSecurityGroupName'))]"
                     }
                 },
                 "diagnosticsProfile": {
